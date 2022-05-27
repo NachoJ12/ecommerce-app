@@ -1,0 +1,39 @@
+nav {
+  background-color: grey;
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+h2.nameEcommerce {
+  color: #61dafb;
+}
+
+img {
+  width: 4rem;
+}
+
+ul {
+  width: 24.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 0rem;
+}
+
+li {
+  list-style: none;
+  padding: 0.2rem 0.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
