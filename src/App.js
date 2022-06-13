@@ -1,6 +1,7 @@
 import './App.css';
-import ItemListContainer from './components/ItemListContainer';
-import NavBar from './components/NavBar';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer.js';
+import NavBar from './components/NavBar/NavBar';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <NavBar />
       <h2>Ofertas de la semana</h2>
       <ItemListContainer greeting={'Bienvenido!'} />
+      <ItemDetailContainer />
     </div>
   );
 }

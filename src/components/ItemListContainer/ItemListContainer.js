@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import customFetch from '../utils/customFetch';
-import productsList from '../utils/products';
-import ItemCount from './ItemCount';
-import ItemList from './ItemList';
+import customFetch from '../../utils/customFetch';
+import productsList from '../../utils/products';
+import ItemList from '../ItemList/ItemList';
+import style from './ItemListContainer.module.css';
 
 const ItemListContainer = (props) => {
   const [items, setItems] = useState([]);
@@ -12,14 +12,10 @@ const ItemListContainer = (props) => {
       .then((res) => setItems(res))
       .catch((err) => console.log(err));
   }, [items]);
-  console.log(items);
 
   return (
-    <div
-      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-    >
+    <div className={style.container}>
       <h3>{props.greeting}</h3>
-      <ItemCount stock={5} initial={1} onAdd />
       <ItemList items={items} />
     </div>
   );

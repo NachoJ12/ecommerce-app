@@ -1,5 +1,6 @@
 .itemCountContainer {
-  width: 400px;
+  width: auto;
+  max-width: 25rem;
   display: flex;
   flex-direction: column;
 }
@@ -38,7 +39,7 @@ button.addToCart {
   transition: background-color ease 500ms;
 }
 
-button.btn-counts {
+button.btnCounts {
   font-size: 1.5rem;
   font-weight: bold;
 }

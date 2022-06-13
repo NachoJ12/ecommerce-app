@@ -1,16 +1,10 @@
 import React from 'react';
-import Item from './Item';
+import Item from '../Item/Item';
+import style from './ItemList.module.css';
 
 const ItemList = ({ items }) => {
   return (
-    <div
-      style={{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'space-evenly',
-        flexWrap: 'wrap',
-      }}
-    >
+    <div className={style.container}>
       {items.map((item) => (
         <Item
           key={item.id}
