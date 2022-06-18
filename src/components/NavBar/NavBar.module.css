@@ -1,4 +1,4 @@
-nav {
+.navBar {
   background-color: grey;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -12,7 +12,7 @@ nav {
   align-items: center;
 }
 
-h2.nameEcommerce {
+.nameEcommerce {
   color: #61dafb;
 }
 

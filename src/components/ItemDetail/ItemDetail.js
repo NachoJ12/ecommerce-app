@@ -2,18 +2,26 @@ import React from 'react';
 import ItemCount from '../ItemCount/ItemCount';
 import style from './ItemDetail.module.css';
 
-const ItemDetail = ({ item }) => {
-  // Verificar que efectivamente haya stock para el initial iniciarlo en 1
+const ItemDetail = ({ id, title, description, pictureUrl, price, stock }) => {
   return (
     <div className={style.card}>
-      <img src={item.pictureUrl} alt={item.title} className={style.imgItem} />
+      <img
+        src={pictureUrl}
+        alt={`${id} - ${title}`}
+        className={style.imgItem}
+      />
       <div className={style.container}>
-        <h1>{item.title}</h1>
-        <h3>Product Detail</h3>
-        <p>{item.description}</p>
-        <p className={style.price}>${item.price}</p>
+        <h1>{title}</h1>
+        <p>{description}</p>
+        <p className={style.price}>${price}</p>
       </div>
-      <ItemCount stock={item.stock} initial={1} onAdd />
+      <>
+        {stock > 0 ? (
+          <ItemCount stock={stock} initial={1} onAdd />
+        ) : (
+          <p className={style.outOfStock}>Sin stock</p>
+        )}
+      </>
     </div>
   );
 };

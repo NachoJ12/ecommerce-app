@@ -1,23 +1,26 @@
-import './NavBar.css';
+import style from './NavBar.module.css';
 import logo from '../../logo.svg';
 import CartWidget from '../CartWidget/CartWidget';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <nav className="navBar">
-      <div className="brand">
-        <img src={logo} alt="logo" />
-        <h2 className="nameEcommerce">Electro App</h2>
-      </div>
+    <nav className={style.navBar}>
+      <Link to="/">
+        <div className={style.brand}>
+          <img src={logo} alt="Logo Electro App" />
+          <h2 className={style.nameEcommerce}>Electro App</h2>
+        </div>
+      </Link>
       <ul>
         <li>
-          <a href="#electrodomesticos">Electrodomésticos</a>
+          <Link to="/category/electrodomesticos">Electrodomésticos</Link>
         </li>
         <li>
-          <a href="#informatica">Informática</a>
+          <Link to="/category/informatica">Informática</Link>
         </li>
         <li>
-          <a href="#celulares">Celulares</a>
+          <Link to="/category/celulares">Celulares</Link>
         </li>
       </ul>
       <CartWidget />
