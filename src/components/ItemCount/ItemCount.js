@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-//import './ItemCount.css';
 import style from './ItemCount.module.css';
 
 const ItemCount = ({ stock, initial, onAdd }) => {
@@ -15,6 +14,10 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     if (count > 1) {
       setCount(count - 1);
     }
+  };
+
+  const confirmCount = () => {
+    onAdd(count);
   };
 
   return (
@@ -38,7 +41,9 @@ const ItemCount = ({ stock, initial, onAdd }) => {
           </button>
         </div>
       </div>
-      <button className={style.addToCart}>Agregar al carrito</button>
+      <button onClick={confirmCount} className={style.addToCart}>
+        Agregar al carrito
+      </button>
     </div>
   );
 };

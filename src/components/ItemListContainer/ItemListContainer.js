@@ -51,5 +51,3 @@ const ItemListContainer = (props) => {
 };
 
 export default ItemListContainer;
-//{loading ? <Spinner /> : <ItemList items={items} />}
-//{items.length <= 0 ? <Spinner /> : <ItemList items={items} />}

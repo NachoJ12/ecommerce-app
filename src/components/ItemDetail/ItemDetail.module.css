@@ -6,9 +6,6 @@
   align-items: center;
   margin: 2rem 3rem;
   padding: 6rem 0rem;
-  /*width: 30%;
-  min-width: 300px;
-  max-width: 410px;*/
 }
 
 .card:hover {
@@ -19,7 +16,7 @@
   padding: 0rem 1rem 1rem;
 }
 
-button.seeDetail {
+button.finishPurchase {
   padding: 0.5rem;
   border: 1px solid #389bb6;
   border-radius: 5px;
@@ -33,14 +30,14 @@ button:active {
   transition: 100ms;
 }
 
-button.seeDetail:hover {
+button.finishPurchase:hover {
   background-color: dodgerblue;
   color: #ffffff;
   transition: color ease 1000ms;
   transition: background-color ease 1000ms;
 }
 
-button.seeDetail:active {
+button.finishPurchase:active {
   box-shadow: 0 0.1rem 0.8rem rgb(67, 118, 167);
 }
 
@@ -54,7 +51,6 @@ button[disabled] {
 .imgItem {
   width: 12.5rem;
   justify-self: center;
-  /*max-height: 12.5rem;*/
 }
 
 .price {
