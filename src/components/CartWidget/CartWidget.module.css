@@ -1,3 +1,13 @@
+.cartContainer {
+  display: flex;
+  justify-self: end;
+  align-items: center;
+}
+
+.cartContainer:hover {
+  color: white;
+}
+
 .cart {
   justify-self: flex-end;
   margin-right: 1rem;
