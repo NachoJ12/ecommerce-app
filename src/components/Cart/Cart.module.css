@@ -1,0 +1,73 @@
+/* .container {
+  background: #2d9cff;
+} */
+
+.column5Titles {
+  display: grid;
+  grid-template-columns: 1fr 5fr 2fr 2fr 2fr 3rem;
+  padding: 0.6rem 0.3rem;
+  background: #386fa1;
+  border: 1px solid #2d9cff;
+  margin: 3px;
+}
+
+.column5 {
+  display: grid;
+  grid-template-columns: 1fr 5fr 2fr 2fr 2fr 3rem;
+  padding: 0.6rem 0.3rem;
+  background: white;
+  border: 1px solid #61dafb;
+  margin: 3px;
+  height: 5.75rem;
+  align-items: center;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.column5:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.row {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.createRow {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.btnInCart {
+  background-color: dodgerblue;
+  color: #ffffff;
+  transition: color ease 1000ms;
+  transition: background-color ease 1000ms;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.btnInCart:hover {
+  background-color: rgb(24, 104, 184);
+  color: #ffffff;
+  transition: color ease 1000ms;
+  transition: background-color ease 1000ms;
+}
+
+.btnInCart:active {
+  box-shadow: 0 0.1rem 0.8rem rgb(67, 118, 167);
+}
+
+.cartEmpty {
+  padding: 2rem;
+}
+
+.imgItem {
+  justify-self: flex-start;
+}
+
+.deleteItem {
+  font-weight: bold;
+  color: black;
+}

@@ -7,7 +7,9 @@ const CartWidget = () => {
   const resultContext = useContext(cartContext);
   console.log('ContextEnCartWidget', resultContext);
 
-  return (
+  return resultContext.totalQuantity < 1 ? (
+    <></>
+  ) : (
     <NavLink to="/cart" className={style.cartContainer}>
       <span className={style.cart + ' material-symbols-outlined'}>
         shopping_cart
@@ -16,7 +18,5 @@ const CartWidget = () => {
     </NavLink>
   );
 };
-
-//<div className={style.cartContainer}></div>
 
 export default CartWidget;

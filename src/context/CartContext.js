@@ -23,18 +23,42 @@ const CartContextProvider = (props) => {
       });
       setCarrito(copiaCarrito);
       setTotalQuantity(totalQuantity + quantity);
+      setTotalPrice(
+        parseFloat((totalPrice + itemAgregado.price * quantity).toFixed(2))
+      );
     } else {
       copiaCarrito.push({ ...itemAgregado });
       setCarrito(copiaCarrito);
       setTotalQuantity(totalQuantity + quantity);
+      setTotalPrice(
+        parseFloat((totalPrice + itemAgregado.price * quantity).toFixed(2))
+      );
     }
   };
 
-  const removeItem = (itemId) => {};
+  const removeItem = (itemId) => {
+    const copiaCarrito = [...carrito];
+    const decreasePriceAndQuantity = copiaCarrito.find(
+      (item) => item.id === itemId
+    );
+    setTotalPrice(
+      parseFloat(
+        (
+          totalPrice -
+          decreasePriceAndQuantity.price * decreasePriceAndQuantity.quantity
+        ).toFixed(2)
+      )
+    );
+    setTotalQuantity(totalQuantity - decreasePriceAndQuantity.quantity);
+
+    const newCopiaCarrito = copiaCarrito.filter((item) => item.id !== itemId);
+    setCarrito(newCopiaCarrito);
+  };
 
   const clear = () => {
     setCarrito([]);
     setTotalQuantity(0);
+    setTotalPrice(0);
   };
 
   const isInCart = (idSearch) => {
