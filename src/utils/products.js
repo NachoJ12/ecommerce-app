@@ -1,6 +1,5 @@
 const productsList = [
   {
-    id: 1,
     title: 'Parlantes Logitech S150',
     description: 'Parlantes Logitech S150 negro',
     price: 299.99,
@@ -9,7 +8,6 @@ const productsList = [
     categoryId: 'informatica',
   },
   {
-    id: 2,
     title: 'Celular Samsung M12',
     description: 'Celular Samsung M12 128GB',
     price: 799.99,
@@ -19,7 +17,6 @@ const productsList = [
     categoryId: 'celulares',
   },
   {
-    id: 3,
     title: 'Mouse Logitech',
     description: 'Mouse Logitech negro',
     price: 319.99,
@@ -29,7 +26,6 @@ const productsList = [
     categoryId: 'informatica',
   },
   {
-    id: 4,
     title: 'Celular X',
     description: 'Celular X 128GB',
     price: 699.99,
@@ -39,7 +35,6 @@ const productsList = [
     categoryId: 'celulares',
   },
   {
-    id: 5,
     title: 'Mouse Logitech2',
     description: 'Mouse Logitech2',
     price: 319.99,
@@ -49,7 +44,6 @@ const productsList = [
     categoryId: 'informatica',
   },
   {
-    id: 6,
     title: 'Mouse Logitech Stock 0',
     description: 'Mouse Logitech3',
     price: 319.99,
@@ -59,7 +53,6 @@ const productsList = [
     categoryId: 'informatica',
   },
   {
-    id: 7,
     title: 'Batidora Philips',
     description: 'Batidora Philips 450w',
     price: 599.99,
@@ -69,7 +62,6 @@ const productsList = [
     categoryId: 'electrodomesticos',
   },
   {
-    id: 8,
     title: 'Tostador Blanco ATMA',
     description: 'Tostador Blanco ATMA 2 rebanadas',
     price: 700.99,
@@ -79,7 +71,6 @@ const productsList = [
     categoryId: 'electrodomesticos',
   },
   {
-    id: 9,
     title: 'Batidora Manual Liliana',
     description: 'Batidora Manual Liliana "Shake" 450w',
     price: 549.99,
@@ -89,7 +80,6 @@ const productsList = [
     categoryId: 'electrodomesticos',
   },
   {
-    id: 10,
     title: 'Freidora compacta',
     description: 'Cecotec Freidora sin aceite compacta negra',
     price: 999.99,
@@ -100,4 +90,14 @@ const productsList = [
   },
 ];
 
-export default productsList;
+//export default productsList;
+
+//Send products to firestore... In App:
+/*
+import { addDoc, doc } from 'firebase/firestore';
+import productsList from './utils/products';
+import { collectionProd } from './config/firebase';
+
+const collectionProd = collection(db, 'products');
+productsList.map((prod) => addDoc(collectionProd, prod));
+*/

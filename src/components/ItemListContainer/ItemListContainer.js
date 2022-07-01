@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import customFetch, { getProductsByCategory } from '../../utils/customFetch';
-import productsList from '../../utils/products';
 import ItemList from '../ItemList/ItemList';
 import { Spinner } from '../Spinner/Spinner';
 import style from './ItemListContainer.module.css';
+import { db } from '../../config/firebase';
+import { getDocs, collection, query, where } from 'firebase/firestore';
 
 const ItemListContainer = (props) => {
   const [items, setItems] = useState([]);
@@ -14,21 +14,24 @@ const ItemListContainer = (props) => {
   useEffect(() => {
     setLoading(true);
 
-    if (!categoryId) {
-      customFetch(2000, productsList)
-        .then((res) => {
-          setItems(res);
-          setLoading(false);
-        })
-        .catch((err) => console.log(err));
-    } else {
-      getProductsByCategory(categoryId)
-        .then((res) => {
-          setItems(res);
-          setLoading(false);
-        })
-        .catch((err) => console.log(err));
-    }
+    const ref = categoryId
+      ? query(collection(db, 'products'), where('categoryId', '==', categoryId))
+      : collection(db, 'products');
+
+    getDocs(ref)
+      .then((res) => {
+        const productsMap = res.docs.map((doc) => {
+          const aux = doc.data();
+          aux.id = doc.id;
+
+          return aux;
+        });
+        setLoading(false);
+        setItems(productsMap);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, [categoryId]);
 
   return (

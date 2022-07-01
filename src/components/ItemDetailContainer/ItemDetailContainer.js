@@ -1,6 +1,7 @@
+import { collection, doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProductsById } from '../../utils/customFetch';
+import { db } from '../../config/firebase';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { Spinner } from '../Spinner/Spinner';
 
@@ -9,10 +10,18 @@ const ItemDetailContainer = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    getProductsById(parseInt(id))
-      .then((res) => setItem(res))
-      .catch((err) => console.log(err));
-  });
+    getDoc(doc(collection(db, 'products'), id))
+      .then((res) => {
+        console.log(res.data(), res.id);
+        setItem({
+          id: res.id,
+          ...res.data(),
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [id]);
 
   return (
     <div>
