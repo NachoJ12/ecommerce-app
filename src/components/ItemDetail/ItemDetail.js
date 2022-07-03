@@ -35,14 +35,16 @@ const ItemDetail = ({ id, title, description, pictureUrl, price, stock }) => {
             {amount < 1 ? (
               <ItemCount stock={stock} initial={1} onAdd={onAdd} />
             ) : (
-              <Link to="/cart">
-                <button
-                  onClick={agregarAlCarrito}
-                  className={style.finishPurchase}
-                >
-                  Terminar mi compra
-                </button>
-              </Link>
+              <div>
+                <Link to="/cart">
+                  <button
+                    onClick={agregarAlCarrito}
+                    className={style.finishPurchase}
+                  >
+                    Terminar mi compra
+                  </button>
+                </Link>
+              </div>
             )}
           </>
         ) : (

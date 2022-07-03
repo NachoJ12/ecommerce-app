@@ -1,0 +1,19 @@
+.saveBtn {
+  padding: 0.5rem;
+  border: 1px solid #389bb6;
+  border-radius: 5px;
+  margin-top: 1rem;
+  transition: color ease 500ms;
+  transition: background-color ease 500ms;
+}
+
+.saveBtn:hover {
+  background-color: dodgerblue;
+  color: #ffffff;
+  transition: color ease 1000ms;
+  transition: background-color ease 1000ms;
+}
+
+.saveBtn:active {
+  box-shadow: 0 0.1rem 0.8rem rgb(67, 118, 167);
+}

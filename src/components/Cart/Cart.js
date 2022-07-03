@@ -58,7 +58,9 @@ const Cart = () => {
           <div>
             <p>Subtotal: ${resultContext.totalPrice}</p>
             <p>Total: ${resultContext.totalPrice}</p>
-            <button className={style.btnInCart}>Iniciar compra</button>
+            <Link to="/checkout">
+              <button className={style.btnInCart}>Iniciar compra</button>
+            </Link>
           </div>
         </div>
       )}
