@@ -24,7 +24,6 @@ export const Checkout = () => {
       quantity: element.quantity,
     });
   });
-  console.log(cartCheckout);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

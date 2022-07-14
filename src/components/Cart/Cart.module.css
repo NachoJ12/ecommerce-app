@@ -8,7 +8,9 @@
   padding: 0.6rem 0.3rem;
   background: #386fa1;
   border: 1px solid #2d9cff;
+  border-radius: 5px;
   margin: 3px;
+  align-content: center;
 }
 
 .column5 {
@@ -17,6 +19,7 @@
   padding: 0.6rem 0.3rem;
   background: white;
   border: 1px solid #61dafb;
+  border-radius: 5px;
   margin: 3px;
   height: 5.75rem;
   align-items: center;
@@ -34,9 +37,9 @@
   grid-template-rows: 1fr;
 }
 
-.createRow {
+.column {
   display: grid;
-  grid-template-rows: 1fr;
+  grid-template-columns: 2fr max(30%);
 }
 
 .btnInCart {
@@ -44,8 +47,11 @@
   color: #ffffff;
   transition: color ease 1000ms;
   transition: background-color ease 1000ms;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 5px;
+
+  width: -webkit-fill-available;
+  max-width: 20rem;
 }
 
 .btnInCart:hover {
@@ -70,4 +76,24 @@
 .deleteItem {
   font-weight: bold;
   color: black;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  transition: 1s;
+}
+
+.deleteItem:hover {
+  background-color: #ebeaea;
+  transition: 0.3s;
+}
+
+.containerToCheckout {
+  padding: 0.6rem 0.3rem;
+  background: white;
+  border: 1px solid #61dafb;
+  border-radius: 5px;
+  margin: 3px;
+  align-items: center;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  transition: 0.3s;
+  height: fit-content;
 }

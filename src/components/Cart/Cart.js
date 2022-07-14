@@ -17,7 +17,7 @@ const Cart = () => {
           </Link>
         </div>
       ) : (
-        <div className={style.container}>
+        <div className={style.column}>
           <div className={style.row}>
             <div className={style.column5Titles}>
               <div></div>
@@ -26,38 +26,44 @@ const Cart = () => {
               <h5>Precio</h5>
               <h5>Subtotal</h5>
             </div>
+
+            <div className={style.row}>
+              {resultContext.carrito.map((product) => (
+                <div className={style.column5} key={product.id}>
+                  <div>
+                    <img
+                      src={product.pictureUrl}
+                      alt={`${product.id} - ${product.title}`}
+                      className={style.imgItem}
+                    />
+                  </div>
+                  <div>{product.title}</div>
+                  <div>{product.quantity}</div>
+                  <div>${product.price}</div>
+                  <div>
+                    ${parseFloat((product.price * product.quantity).toFixed(2))}
+                  </div>
+                  <button
+                    onClick={() => resultContext.removeItem(product.id)}
+                    className={style.deleteItem}
+                  >
+                    <span
+                      class="material-symbols-outlined"
+                      style={{ lineHeight: 2 }}
+                    >
+                      delete
+                    </span>
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className={style.row}>
-            {resultContext.carrito.map((product) => (
-              <div className={style.column5} key={product.id}>
-                <div>
-                  <img
-                    src={product.pictureUrl}
-                    alt={`${product.id} - ${product.title}`}
-                    className={style.imgItem}
-                  />
-                </div>
-                <div>{product.title}</div>
-                <div>{product.quantity}</div>
-                <div>{product.price}</div>
-
-                <div>
-                  {parseFloat((product.price * product.quantity).toFixed(2))}
-                </div>
-                <button
-                  onClick={() => resultContext.removeItem(product.id)}
-                  className={style.deleteItem}
-                >
-                  X
-                </button>
-              </div>
-            ))}
-          </div>
-
-          <div>
+          <div className={style.containerToCheckout}>
+            <h2>Resumen de compra</h2>
             <p>Subtotal: ${resultContext.totalPrice}</p>
             <p>Total: ${resultContext.totalPrice}</p>
+            <hr></hr>
             <Link to="/checkout">
               <button className={style.btnInCart}>Iniciar compra</button>
             </Link>
