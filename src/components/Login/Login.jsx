@@ -1,10 +1,12 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../../config/firebase';
+import { userContext } from '../../context/UserContext';
 import style from './Login.module.css';
 
 const Login = () => {
+  const context = useContext(userContext);
   const [user, setUser] = useState({
     login_email: '',
     login_password: '',
@@ -18,7 +20,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     console.log('handleSubmit', user);
-    //setLoading(true);
+    setLoading(true);
     e.preventDefault();
     try {
       // Validamos y autenticamos que el email y contraseña sean correctos y existan en la base de datos
@@ -28,8 +30,8 @@ const Login = () => {
         user.login_password
       );
       console.log(responseUser);
-      //setLoading(false);
-      //console.log("uid", responseUser.user.uid)
+      setLoading(false);
+      console.log('uid', responseUser.user.uid);
       /*const q = query(
         collection(dbFirestore, 'usuarios'),
         where('userId', '==', responseUser.user.uid)
@@ -37,10 +39,11 @@ const Login = () => {
       const querySnapshot = await getDocs(q);*/
       //console.log("usuario", querySnapshot.docs[0]?.data())
       //context.loginUser(querySnapshot.docs[0]?.data()); // Context
+      context.loginUser(responseUser.user.uid);
       alert('Bienvenido/a');
     } catch (error) {
       console.log(error);
-      //setLoading(false);
+      setLoading(false);
       alert(error.message);
       if (error.code === 'auth/weak-password') {
         alert('La contraseña debe tener al menos 6 caracteres');
