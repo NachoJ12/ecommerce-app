@@ -9,6 +9,7 @@ const Login = () => {
     login_email: '',
     login_password: '',
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,20 +18,29 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     console.log('handleSubmit', user);
-
+    //setLoading(true);
     e.preventDefault();
     try {
+      // Validamos y autenticamos que el email y contraseña sean correctos y existan en la base de datos
       const responseUser = await signInWithEmailAndPassword(
         auth,
         user.login_email,
         user.login_password
       );
       console.log(responseUser);
-
+      //setLoading(false);
+      //console.log("uid", responseUser.user.uid)
+      /*const q = query(
+        collection(dbFirestore, 'usuarios'),
+        where('userId', '==', responseUser.user.uid)
+      );
+      const querySnapshot = await getDocs(q);*/
+      //console.log("usuario", querySnapshot.docs[0]?.data())
+      //context.loginUser(querySnapshot.docs[0]?.data()); // Context
       alert('Bienvenido/a');
     } catch (error) {
       console.log(error);
-
+      //setLoading(false);
       alert(error.message);
       if (error.code === 'auth/weak-password') {
         alert('La contraseña debe tener al menos 6 caracteres');
