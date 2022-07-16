@@ -3,7 +3,7 @@ import style from './OrderForm.module.css';
 
 const OrderForm = ({ handleChange, userData, handleSubmit, handleBuy }) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={style.orderForm} onSubmit={handleSubmit}>
       <div>
         <label>Nombre</label>
         <br />
