@@ -4,6 +4,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import OrderForm from '../Form/OrderForm';
 import { useContext } from 'react';
 import { cartContext } from '../../context/CartContext';
+import style from './Chekout.module.css';
 
 export const Checkout = () => {
   const [userData, setUserData] = useState({
@@ -60,14 +61,14 @@ export const Checkout = () => {
       {orderId !== '' ? (
         <h1>Gracias por tu compra, tu número de envío es: {orderId}</h1>
       ) : (
-        <>
+        <div className={style.containerCheckout}>
           <h2>Checkout</h2>
           <OrderForm
             handleChange={handleChange}
             userData={userData}
             handleSubmit={handleSubmit}
           />
-        </>
+        </div>
       )}
     </>
   );

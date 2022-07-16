@@ -1,3 +1,10 @@
+.orderForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: start;
+}
+
 .saveBtn {
   padding: 0.5rem;
   border: 1px solid #389bb6;
@@ -16,4 +23,16 @@
 
 .saveBtn:active {
   box-shadow: 0 0.1rem 0.8rem rgb(67, 118, 167);
+}
+
+.orderForm input {
+  padding: 0.2rem 0.5rem;
+  margin: 0.3rem 0 0.5rem 0;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+
+.orderForm input:focus {
+  outline: none;
+  border: 2px solid #61dafb;
 }

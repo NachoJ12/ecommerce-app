@@ -48,7 +48,7 @@ const Cart = () => {
                     className={style.deleteItem}
                   >
                     <span
-                      class="material-symbols-outlined"
+                      className="material-symbols-outlined"
                       style={{ lineHeight: 2 }}
                     >
                       delete
