@@ -61,11 +61,126 @@ a:hover {
   margin-right: 1rem;
 }
 
-.smallFontSize {
+.smallTextName {
   font-size: 0.75rem;
+  max-width: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .navContainerG3 {
   display: flex;
   justify-content: flex-end;
+}
+
+/* Nav dropdown user */
+
+.contenedor {
+  margin: auto;
+  width: 90%;
+  max-width: 200px;
+}
+
+.contenedorEnlacesNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btnDepartamentos {
+  padding: 7px;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+  position: relative;
+}
+
+/* .btnDepartamentos span {
+  margin-left: 5px;
+  position: relative;
+  bottom: 3px;
+} */
+
+/* .btnDepartamentos:hover {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+} */
+
+.contenedorGrid {
+  /* position: relative; */
+  /*top: -32px; */
+  top: 0px;
+  left: -73px;
+}
+
+.grid2 {
+  height: 58px;
+  /* background-color: rgb(255 0 85 / 25%); */
+  z-index: 5000;
+  /* width: 112px; */
+  width: 100%;
+  position: absolute;
+  /* top: 19px; */
+  top: 2px;
+  display: none;
+}
+
+.grid {
+  width: 100%;
+  display: none;
+  position: absolute;
+  /* top: 22px; */
+  top: 59px;
+  z-index: 1000;
+
+  /* display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: 'categorias subcategorias subcategorias subcategorias'; */
+}
+
+.gridActivo {
+  display: grid;
+}
+
+.grid::before {
+  content: '';
+  display: block;
+  background: transparent;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #fff;
+  position: absolute;
+  top: -5px;
+  left: 43%;
+}
+
+.categorias {
+  background-color: whitesmoke;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  padding-top: 10px;
+  /* min-height: 300px; */
+}
+
+.categoriasLink {
+  color: #000;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  align-items: center;
+}
+
+.categoriasLink span {
+  display: none;
+  font-size: 1rem;
+}
+
+.categoriasLink:hover {
+  color: #61dafb;
+  font-weight: bold;
+}
+
+.categoriasLink:hover span {
+  display: block;
 }
