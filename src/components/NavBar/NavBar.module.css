@@ -42,3 +42,30 @@ a {
 a:hover {
   color: #61dafb;
 }
+
+/* User Icon */
+.userIcon {
+  margin-right: 0.2rem;
+  font-size: 28px;
+}
+
+.userLoggedIn {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.userNotLoggedIn {
+  display: flex;
+  justify-content: space-around;
+  margin-right: 1rem;
+}
+
+.smallFontSize {
+  font-size: 0.75rem;
+}
+
+.navContainerG3 {
+  display: flex;
+  justify-content: flex-end;
+}
