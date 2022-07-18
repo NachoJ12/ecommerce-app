@@ -1,17 +1,20 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { auth } from '../../config/firebase';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth, db } from '../../config/firebase';
 import { userContext } from '../../context/UserContext';
+import { Spinner } from '../Spinner/Spinner';
 import style from './Login.module.css';
 
 const Login = () => {
-  const context = useContext(userContext);
+  const userContextResult = useContext(userContext);
   const [user, setUser] = useState({
     login_email: '',
     login_password: '',
   });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +26,6 @@ const Login = () => {
     setLoading(true);
     e.preventDefault();
     try {
-      // Validamos y autenticamos que el email y contraseña sean correctos y existan en la base de datos
       const responseUser = await signInWithEmailAndPassword(
         auth,
         user.login_email,
@@ -32,15 +34,16 @@ const Login = () => {
       console.log(responseUser);
       setLoading(false);
       console.log('uid', responseUser.user.uid);
-      /*const q = query(
-        collection(dbFirestore, 'usuarios'),
+      const q = query(
+        collection(db, 'usuarios'),
         where('userId', '==', responseUser.user.uid)
       );
-      const querySnapshot = await getDocs(q);*/
-      //console.log("usuario", querySnapshot.docs[0]?.data())
-      //context.loginUser(querySnapshot.docs[0]?.data()); // Context
-      context.loginUser(responseUser.user.uid);
+      const querySnapshot = await getDocs(q);
+      //console.log('usuario', querySnapshot.docs[0]?.data());
+      userContextResult.loginUser(querySnapshot.docs[0]?.data()); // Context
+      //userContextResult.loginUser(responseUser.user.uid);
       alert('Bienvenido/a');
+      navigate('/');
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -79,59 +82,61 @@ const Login = () => {
     }
   };
 
-  return (
-    <div>
-      <div className={style.contenedorFormulario}>
-        <h1 style={{ color: 'white', marginBottom: '2rem' }}>Login</h1>
-        <form onSubmit={handleSubmit}>
-          <div className={style.contenedorInput}>
-            <label className={style.label}>
-              Email<span className={style.req}>*</span>
-            </label>
-            <input
-              className={style.input}
-              type="text"
-              name="login_email"
-              onChange={handleChange}
-              onFocus={handlerMultiple}
-              onBlur={handlerMultiple}
-              onKeyUp={handlerMultiple}
-              value={user.login_email}
-            />
-          </div>
-          <div className={style.contenedorInput}>
-            <label className={style.label}>
-              Contraseña<span className={style.req}>*</span>
-            </label>
-            <input
-              className={style.input}
-              type="password"
-              name="login_password"
-              onChange={handleChange}
-              onFocus={handlerMultiple}
-              onBlur={handlerMultiple}
-              onKeyUp={handlerMultiple}
-              value={user.login_password}
-            />
-          </div>
+  if (loading) {
+    return <Spinner />;
+  } else {
+    return (
+      <div>
+        <div className={style.contenedorFormulario}>
+          <h1 className={style.titleOutsideForm}>Login</h1>
+          <form onSubmit={handleSubmit}>
+            <div className={style.contenedorInput}>
+              <label className={style.label}>
+                Email<span className={style.req}>*</span>
+              </label>
+              <input
+                className={style.input}
+                type="text"
+                name="login_email"
+                onChange={handleChange}
+                onFocus={handlerMultiple}
+                onBlur={handlerMultiple}
+                onKeyUp={handlerMultiple}
+                value={user.login_email}
+              />
+            </div>
+            <div className={style.contenedorInput}>
+              <label className={style.label}>
+                Contraseña<span className={style.req}>*</span>
+              </label>
+              <input
+                className={style.input}
+                type="password"
+                name="login_password"
+                onChange={handleChange}
+                onFocus={handlerMultiple}
+                onBlur={handlerMultiple}
+                onKeyUp={handlerMultiple}
+                value={user.login_password}
+              />
+            </div>
 
-          {/* <div>
+            {/* <div>
             <Link to="#faltaHacerElEnvioDesdeFirebase">
               ¿Has olvidado la contraseña?
             </Link>
           </div> */}
 
-          <button className={`${style.button} ${style.buttonBlock}`}>
-            Ingresar
-          </button>
-        </form>
+            <button className={`${style.button}`}>Ingresar</button>
 
-        {/* <div>
-          <Link to="/signup">¿No tienes una cuenta? Regístrate aquí</Link>
-        </div> */}
+            <div>
+              <Link to="/signup">¿No tienes una cuenta? Regístrate aquí</Link>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Login;

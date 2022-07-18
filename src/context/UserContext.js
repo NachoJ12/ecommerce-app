@@ -5,9 +5,7 @@ export const userContext = createContext();
 const Provider = userContext.Provider;
 
 const UserContextProvider = (props) => {
-  const [userLogin, setUserLogin] = useState(
-    localStorage.getItem('login') /*false*/
-  ); // Si le pongo false, inicia siempre en false el estado. Ahora con el localStorage, lo que hace es obtener el item clave/valor de "login" del localStorage, y si es true lo muestra como logueado y sino no.
+  const [userLogin, setUserLogin] = useState(localStorage.getItem('login'));
   const [userInfo, setUserInfo] = useState(
     JSON.parse(localStorage.getItem('user'))
   );
@@ -23,6 +21,7 @@ const UserContextProvider = (props) => {
     localStorage.removeItem('login');
     setUserInfo();
     localStorage.removeItem('user');
+    alert('Desconexión exitosa. User context, modificar alerta');
   };
 
   return (

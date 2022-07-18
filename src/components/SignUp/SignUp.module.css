@@ -1,3 +1,8 @@
+.titleOutsideForm {
+  color: white;
+  margin-bottom: 2rem;
+}
+
 .contenedorFormulario {
   background: rgba(19, 35, 47, 0.9);
   padding: 40px;
@@ -10,7 +15,7 @@
 /* LABELS */
 label {
   position: absolute;
-  transform: translateY(30px);
+  transform: translateY(6px);
   left: 13px;
   color: rgb(255, 255, 255, 0.5);
   transition: all 0.25s ease;
@@ -29,8 +34,7 @@ label {
 }
 
 .activeLabel {
-  /*transform: translateY(50px);*/
-  transform: translateY(70px);
+  transform: translateY(50px);
   left: 2px;
   font-size: 14px;
 }
