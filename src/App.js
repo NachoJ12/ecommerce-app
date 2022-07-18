@@ -7,29 +7,34 @@ import CartContextProvider from './context/CartContext';
 import Cart from './components/Cart/Cart';
 import { Checkout } from './components/Checkout/Checkout';
 import SignUp from './components/SignUp/SignUp';
+import Login from './components/Login/Login';
+import UserContextProvider from './context/UserContext';
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <CartContextProvider>
-          <NavBar />
-          <Routes>
-            <Route
-              path="/"
-              element={<ItemListContainer greeting={'Bienvenido!'} />}
-            />
-            <Route path="/item/:id" element={<ItemDetailContainer />} />
-            <Route
-              path="/category/:categoryId"
-              element={<ItemListContainer />}
-            />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/signup" element={<SignUp />} />
-          </Routes>
-        </CartContextProvider>
-      </BrowserRouter>
+      <UserContextProvider>
+        <BrowserRouter>
+          <CartContextProvider>
+            <NavBar />
+            <Routes>
+              <Route
+                path="/"
+                element={<ItemListContainer greeting={'Bienvenido!'} />}
+              />
+              <Route path="/item/:id" element={<ItemDetailContainer />} />
+              <Route
+                path="/category/:categoryId"
+                element={<ItemListContainer />}
+              />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </CartContextProvider>
+        </BrowserRouter>
+      </UserContextProvider>
     </div>
   );
 }

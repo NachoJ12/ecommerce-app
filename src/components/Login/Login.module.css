@@ -6,20 +6,20 @@
 .contenedorFormulario {
   background: rgba(19, 35, 47, 0.9);
   padding: 40px;
-  max-width: 550px;
+  max-width: 400px;
   margin: 40px auto;
   border-radius: 4px;
   box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 }
 
 /* LABELS */
-label {
+.label {
   position: absolute;
   transform: translateY(6px);
   left: 13px;
   color: rgb(255, 255, 255, 0.5);
   transition: all 0.25s ease;
-  /*backface-visibility: hidden;*/
+  backface-visibility: hidden;
   pointer-events: none;
   font-size: 22px;
 }
@@ -62,8 +62,12 @@ label {
 }
 
 /* INPUTS */
+.contenedorInput {
+  position: relative;
+  margin-bottom: 40px;
+}
 
-input {
+.input {
   font-size: 22px;
   display: block;
   width: 100%;
@@ -81,7 +85,7 @@ input {
   border-radius: 5px;
 }
 
-input:focus {
+.input:focus {
   outline: none;
   border-color: #61dafb;
   border-top: none;
@@ -89,14 +93,10 @@ input:focus {
   border-right: none;
 }
 
-.contenedorInput {
-  position: relative;
-  margin-bottom: 40px;
-}
-
-/* BUTTON REGISTRAR */
-
+/* BUTTON INGRESAR */
 .button {
+  display: block;
+  width: 100%;
   border: 0;
   outline: none;
   border-radius: 5px;
@@ -107,13 +107,9 @@ input:focus {
   color: #fff;
   transition: all 0.5s ease;
   -webkit-appearance: none;
+  margin-bottom: 1rem;
 }
 
 .button:hover {
   background: #16c9f9;
-}
-
-.buttonBlock {
-  display: block;
-  width: 100%;
 }

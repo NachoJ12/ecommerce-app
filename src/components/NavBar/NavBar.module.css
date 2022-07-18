@@ -42,3 +42,121 @@ a {
 a:hover {
   color: #61dafb;
 }
+
+/* User Icon */
+.userIcon {
+  margin-right: 0.2rem;
+  font-size: 28px;
+}
+
+.userLoggedIn {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.userNotLoggedIn {
+  display: flex;
+  justify-content: space-around;
+  margin-right: 1rem;
+}
+
+.smallTextName {
+  font-size: 0.75rem;
+  max-width: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navContainerG3 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Nav dropdown user */
+
+.navLinkContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btnUserLoggedIn {
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.dropdownPositionContainer {
+  margin: auto;
+  width: 90%;
+  max-width: 200px;
+  top: 0px;
+  left: -73px;
+}
+
+.extendOccultDropdown {
+  display: none;
+  width: 100%;
+  height: 58px;
+  position: absolute;
+  top: 2px;
+  z-index: 5000;
+  /* background-color: rgb(255 0 85 / 25%); */
+}
+
+.dropdownContainer {
+  width: 100%;
+  display: none;
+  position: absolute;
+  top: 59px;
+  z-index: 1000;
+}
+
+.gridActive {
+  display: grid;
+}
+
+.dropdownContainer::before {
+  content: '';
+  display: block;
+  background: transparent;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #fff;
+  position: absolute;
+  top: -5px;
+  left: 43%;
+}
+
+.categories {
+  background-color: whitesmoke;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  padding-top: 10px;
+}
+
+.categoriesLink {
+  color: #000;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  align-items: center;
+}
+
+.categoriesLink span {
+  display: none;
+  font-size: 1rem;
+}
+
+.categoriesLink:hover {
+  color: #61dafb;
+  font-weight: bold;
+}
+
+.categoriesLink:hover span {
+  display: block;
+}

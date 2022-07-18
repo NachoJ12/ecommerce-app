@@ -1,4 +1,9 @@
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { addDoc, collection } from 'firebase/firestore';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { auth, db } from '../../config/firebase';
+import { Spinner } from '../Spinner/Spinner';
 import style from './SignUp.module.css';
 
 const SignUp = () => {
@@ -8,6 +13,8 @@ const SignUp = () => {
     email: '',
     password: '',
   });
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handlerMultiple = (e) => {
     const target = e.target;
@@ -37,9 +44,40 @@ const SignUp = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    validatePassword();
+
+    if (validatePassword() !== true) {
+      setLoading(false);
+      return;
+    }
+    try {
+      const responseUser = await createUserWithEmailAndPassword(
+        auth,
+        userData.email,
+        userData.password
+      );
+      setLoading(true);
+      await addDoc(collection(db, 'usuarios'), {
+        name: userData.name,
+        lastName: userData.lastName,
+        email: userData.email,
+        userId: responseUser.user.uid,
+      });
+      setLoading(false);
+      alert('Registro exitoso');
+      navigate('/login');
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+      alert(error.message);
+      if (error.code === 'auth/weak-password') {
+        alert('La contraseña debe tener al menos 6 caracteres');
+      }
+      if (error.code === 'auth/email-already-in-use') {
+        alert('Ese email ya se encuentra en uso');
+      }
+    }
   };
 
   const handleChange = (e) => {
@@ -50,7 +88,9 @@ const SignUp = () => {
   const validatePassword = () => {
     const pass1 = document.getElementById('password');
     const pass2 = document.getElementById('passwordRepeat');
-    if (pass1.value.length < 6) {
+    if (pass1.value === pass2.value) {
+      return true;
+    } else if (pass1.value.length < 6) {
       alert('Debe ingresar una contraseña de más de 6 caracteres');
       pass1.focus();
       return false;
@@ -58,111 +98,110 @@ const SignUp = () => {
       alert('Las contraseñas no coinciden');
       pass2.focus();
       return false;
+    } else {
+      return false;
     }
   };
 
-  return (
-    <div>
-      <h1>Registrarse</h1>{' '}
-      <div className={style.contenedorFormulario}>
-        <form onSubmit={handleSubmit}>
-          <div className={style.filaArriba}>
+  if (loading) {
+    return <Spinner />;
+  } else {
+    return (
+      <div>
+        <div className={style.contenedorFormulario}>
+          <h1 className={style.titleOutsideForm}>Registrarse</h1>
+          <form onSubmit={handleSubmit}>
+            <div className={style.filaArriba}>
+              <div className={style.contenedorInput}>
+                <label>
+                  Nombre <span className={style.req}>*</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  onChange={handleChange}
+                  onFocus={handlerMultiple}
+                  onBlur={handlerMultiple}
+                  onKeyUp={handlerMultiple}
+                  value={userData.name}
+                  required
+                ></input>
+              </div>
+
+              <div className={style.contenedorInput}>
+                <label>
+                  Apellido <span className={style.req}>*</span>
+                </label>
+                <input
+                  type="text"
+                  name="lastName"
+                  onChange={handleChange}
+                  onFocus={handlerMultiple}
+                  onBlur={handlerMultiple}
+                  onKeyUp={handlerMultiple}
+                  value={userData.lastName}
+                  required
+                ></input>
+              </div>
+            </div>
+
             <div className={style.contenedorInput}>
               <label>
-                Nombre <span className={style.req}>*</span>
+                Email <span className={style.req}>*</span>
               </label>
-              <br />
               <input
-                type="text"
-                /*placeholder="Nombre"*/
-                name="name"
+                type="email"
+                name="email"
                 onChange={handleChange}
                 onFocus={handlerMultiple}
                 onBlur={handlerMultiple}
                 onKeyUp={handlerMultiple}
-                value={userData.name}
+                value={userData.email}
                 required
               ></input>
             </div>
+
             <div className={style.contenedorInput}>
               <label>
-                Apellido <span className={style.req}>*</span>
+                Contraseña <span className={style.req}>*</span>
               </label>
-              <br />
               <input
-                type="text"
-                // placeholder="Apellido"
-                name="lastName"
+                type="password"
+                name="password"
+                id="password"
                 onChange={handleChange}
                 onFocus={handlerMultiple}
                 onBlur={handlerMultiple}
                 onKeyUp={handlerMultiple}
-                value={userData.lastName}
+                value={userData.password}
                 required
               ></input>
             </div>
-          </div>
-          <div className={style.contenedorInput}>
-            <label>
-              Email <span className={style.req}>*</span>
-            </label>
-            <br />
-            <input
-              type="email"
-              //   placeholder="Email"
-              name="email"
-              onChange={handleChange}
-              onFocus={handlerMultiple}
-              onBlur={handlerMultiple}
-              onKeyUp={handlerMultiple}
-              value={userData.email}
-              required
-            ></input>
-          </div>
 
-          <div className={style.contenedorInput}>
-            <label>
-              Contraseña <span className={style.req}>*</span>
-            </label>
-            <br />
-            <input
-              type="password"
-              //   placeholder="Contraseña"
-              name="password"
-              id="password"
-              onChange={handleChange}
-              onFocus={handlerMultiple}
-              onBlur={handlerMultiple}
-              onKeyUp={handlerMultiple}
-              value={userData.password}
-              required
-            ></input>
-          </div>
-          <div className={style.contenedorInput}>
-            <label>
-              Repetir contraseña <span className={style.req}>*</span>
-            </label>
-            <br />
-            <input
-              type="password"
-              //   placeholder="Repetir contraseña"
-              name="passwordRepeat"
-              id="passwordRepeat"
-              onChange={handleChange}
-              onFocus={handlerMultiple}
-              onBlur={handlerMultiple}
-              onKeyUp={handlerMultiple}
-              required
-            ></input>
-          </div>
+            <div className={style.contenedorInput}>
+              <label>
+                Repetir contraseña <span className={style.req}>*</span>
+              </label>
+              <input
+                type="password"
+                name="passwordRepeat"
+                id="passwordRepeat"
+                onChange={handleChange}
+                onFocus={handlerMultiple}
+                onBlur={handlerMultiple}
+                onKeyUp={handlerMultiple}
+                required
+              ></input>
+            </div>
 
-          <button className={`${style.button} ${style.buttonBlock}`}>
-            Registrarse
-          </button>
-        </form>
+            <button className={`${style.button} ${style.buttonBlock}`}>
+              Registrarse
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default SignUp;
