@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../config/firebase';
 import { Spinner } from '../Spinner/Spinner';
 import style from './SignUp.module.css';
@@ -13,6 +14,7 @@ const SignUp = () => {
     password: '',
   });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handlerMultiple = (e) => {
     const target = e.target;
@@ -45,29 +47,35 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (validatePassword()) {
-      try {
-        const responseUser = await createUserWithEmailAndPassword(
-          auth,
-          userData.email,
-          userData.password
-        );
-        //console.log('User', responseUser);
-        const document = await addDoc(collection(db, 'usuarios'), {
-          name: userData.name,
-          lastName: userData.lastName,
-          email: userData.email,
-          userId: responseUser.user.uid,
-        });
-        setLoading(false);
-        alert('Registro exitoso');
-      } catch (error) {
-        setLoading(false);
-        //console.log(error);
-        alert(error.message);
-        if (error.code === 'auth/weak-password') {
-          alert('La contraseña debe tener al menos 6 caracteres');
-        }
+    if (validatePassword() !== true) {
+      setLoading(false);
+      return;
+    }
+    try {
+      const responseUser = await createUserWithEmailAndPassword(
+        auth,
+        userData.email,
+        userData.password
+      );
+      setLoading(true);
+      await addDoc(collection(db, 'usuarios'), {
+        name: userData.name,
+        lastName: userData.lastName,
+        email: userData.email,
+        userId: responseUser.user.uid,
+      });
+      setLoading(false);
+      alert('Registro exitoso');
+      navigate('/login');
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+      alert(error.message);
+      if (error.code === 'auth/weak-password') {
+        alert('La contraseña debe tener al menos 6 caracteres');
+      }
+      if (error.code === 'auth/email-already-in-use') {
+        alert('Ese email ya se encuentra en uso');
       }
     }
   };
@@ -80,13 +88,17 @@ const SignUp = () => {
   const validatePassword = () => {
     const pass1 = document.getElementById('password');
     const pass2 = document.getElementById('passwordRepeat');
-    if (pass1.value.length < 6) {
+    if (pass1.value === pass2.value) {
+      return true;
+    } else if (pass1.value.length < 6) {
       alert('Debe ingresar una contraseña de más de 6 caracteres');
       pass1.focus();
       return false;
     } else if (pass1.value !== pass2.value) {
       alert('Las contraseñas no coinciden');
       pass2.focus();
+      return false;
+    } else {
       return false;
     }
   };
