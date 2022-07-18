@@ -10,30 +10,31 @@ const NavBar = () => {
   //console.log('userCntxResult', userContextResult);
   const logueado = userContextResult.userLogin;
   //console.log('logueado', logueado);
+  //console.log('userContext', userContextResult);
 
   const mockNameUser = 'Carlos Nacho';
 
   const dropdownUserMouseOver = (e) => {
-    const btnDepartamentos = document.getElementById('btn-departamentos');
-    const grid = document.getElementById('grid');
-    const grid2 = document.getElementById('grid2');
+    const btnUserLoggedIn = document.getElementById('btn-user-loggedIn');
+    const dropdownContainer = document.getElementById('dropdownContainer');
+    const occultDropdown = document.getElementById('extendOccultDropdown');
     //console.log(e.target);
-    console.log(grid);
+    //console.log(dropdownContainer);
 
-    grid.classList.add(`${style.gridActivo}`);
-    grid2.classList.add(`${style.gridActivo}`);
+    dropdownContainer.classList.add(`${style.gridActive}`);
+    occultDropdown.classList.add(`${style.gridActive}`);
   };
 
   const dropdownUserMouseLeave = () => {
-    const btnDepartamentos = document.getElementById('btn-departamentos');
-    const grid = document.getElementById('grid');
-    const grid2 = document.getElementById('grid2');
+    const btnUserLoggedIn = document.getElementById('btn-user-loggedIn');
+    const dropdownContainer = document.getElementById('dropdownContainer');
+    const occultDropdown = document.getElementById('extendOccultDropdown');
 
     //console.log(e.target);
-    console.log(grid);
+    //console.log(dropdownContainer);
 
-    grid.classList.remove(`${style.gridActivo}`);
-    grid2.classList.remove(`${style.gridActivo}`);
+    dropdownContainer.classList.remove(`${style.gridActive}`);
+    occultDropdown.classList.remove(`${style.gridActive}`);
   };
 
   return (
@@ -58,33 +59,37 @@ const NavBar = () => {
       <div className={style.navContainerG3}>
         {/* ${style.contenedor} */}
         {logueado ? (
-          <div
-            className={`${style.userLoggedIn}  ${style.contenedorEnlacesNav}`}
-          >
+          <div className={`${style.userLoggedIn}  ${style.navLinkContainer}`}>
             <div
               onMouseOver={dropdownUserMouseOver}
               onMouseLeave={dropdownUserMouseLeave}
-              className={`${style.btnDepartamentos}`}
-              id="btn-departamentos"
+              className={`${style.btnUserLoggedIn}`}
+              id="btn-user-loggedIn"
             >
               <span className={`material-symbols-outlined ${style.userIcon}`}>
                 person
               </span>
               <small className={style.smallTextName}>{mockNameUser}</small>
               {/*prueba*/}
-              <div className={style.grid2} id="grid2">
+              <div
+                className={style.extendOccultDropdown}
+                id="extendOccultDropdown"
+              >
                 {/* aca arranca */}
-                <div className={`${style.contenedor} ${style.contenedorGrid} `}>
-                  <div className={style.grid} id="grid">
-                    <div className={style.categorias}>
-                      <a href="#profile" className={style.categoriasLink}>
+                <div className={`${style.dropdownPositionContainer}`}>
+                  <div
+                    className={style.dropdownContainer}
+                    id="dropdownContainer"
+                  >
+                    <div className={style.categories}>
+                      <a href="#profile" className={style.categoriesLink}>
                         Profile
                         <span className="material-symbols-outlined">
                           chevron_right
                         </span>
                       </a>
 
-                      <a href="#logout" className={style.categoriasLink}>
+                      <a href="#logout" className={style.categoriesLink}>
                         Logout
                         <span className="material-symbols-outlined">
                           chevron_right
