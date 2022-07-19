@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { db } from '../../config/firebase';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { Spinner } from '../Spinner/Spinner';
+import { toast } from 'react-toastify';
 
 const ItemDetailContainer = () => {
   const [item, setItem] = useState({});
@@ -19,7 +20,7 @@ const ItemDetailContainer = () => {
         });
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.message);
       });
   }, [id]);
 
