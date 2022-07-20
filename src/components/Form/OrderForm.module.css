@@ -47,6 +47,10 @@
   border: 2px solid #61dafb;
 }
 
+.orderForm input:disabled {
+  color: rgb(75, 71, 71);
+}
+
 .contenedorInput {
   position: relative;
   margin-bottom: 15px;
@@ -63,4 +67,9 @@
   pointer-events: none;
   font-size: 14px;
   display: none;
+}
+
+.activateLabel {
+  display: block;
+  color: grey;
 }

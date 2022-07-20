@@ -8,20 +8,28 @@ import style from './Chekout.module.css';
 import { userContext } from '../../context/UserContext';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 export const Checkout = () => {
   const userContextResult = useContext(userContext);
   const resultContext = useContext(cartContext);
   console.log('userContextResult', userContextResult);
   const userLoggedIn = userContextResult.userLogin;
+
   const [userData, setUserData] = useState({
     name: '',
     lastName: '',
     phone: '',
-    email: /*userContextResult.userInfo.email ||*/ '',
+    email: userLoggedIn ? userContextResult.userInfo.email : '',
     confirmEmail: '',
   });
   const [orderId, setOrderId] = useState('');
+
+  useEffect(() => {
+    if (userLoggedIn) {
+      toast.info(`Vas a comprar como: ${userContextResult.userInfo.email}`);
+    }
+  }, []);
 
   let cartCheckout = [];
   resultContext.carrito.forEach((element) => {
@@ -48,14 +56,6 @@ export const Checkout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    /* Revisar esta funcion ya no sirve, valido desde el form */
-    const confirmEmail = document.getElementById('confirmEmail');
-    if (userData.email !== confirmEmail.value) {
-      confirmEmail.focus();
-      toast.error('Los mails deben coincidir');
-      return;
-    }
-    /* Fin funcion anterior */
     if (cartCheckout.length < 1) {
       toast.error(
         'No hay nada agregado al carrito. Por favor seleccione el producto que desea'
@@ -91,9 +91,6 @@ export const Checkout = () => {
       {orderId !== '' ? (
         <h1>Gracias por tu compra, tu número de envío es: {orderId}</h1>
       ) : (
-        //: userLoggedIn ? (
-        //<div>esto se borra</div>
-        //)
         <div className={style.containerCheckout}>
           <h1 className={style.titleCheckout}>Checkout</h1>
           <div className={style.grid2}>
@@ -113,24 +110,12 @@ export const Checkout = () => {
               <h2 className={style.subtitleCheckout}>
                 Detalles de facturación
               </h2>
-              {userLoggedIn ? (
-                <div>
-                  {/* <p>
-                    Comprar como{' '}
-                    <input
-                      readOnly
-                      value={userContextResult.userInfo.email}
-                      disabled
-                    ></input>
-                  </p> */}
-                </div>
-              ) : (
-                <OrderForm
-                  handleChange={handleChange}
-                  userData={userData}
-                  handleSubmit={handleSubmit}
-                />
-              )}
+              <OrderForm
+                handleChange={handleChange}
+                userData={userData}
+                handleSubmit={handleSubmit}
+                logged={userLoggedIn}
+              />
             </div>
           </div>
         </div>
