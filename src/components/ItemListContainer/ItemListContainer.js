@@ -5,6 +5,7 @@ import { Spinner } from '../Spinner/Spinner';
 import style from './ItemListContainer.module.css';
 import { db } from '../../config/firebase';
 import { getDocs, collection, query, where } from 'firebase/firestore';
+import { toast } from 'react-toastify';
 
 const ItemListContainer = (props) => {
   const [items, setItems] = useState([]);
@@ -30,7 +31,7 @@ const ItemListContainer = (props) => {
         setItems(productsMap);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.message);
       });
   }, [categoryId]);
 

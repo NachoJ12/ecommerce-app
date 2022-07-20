@@ -9,10 +9,13 @@ import { Checkout } from './components/Checkout/Checkout';
 import SignUp from './components/SignUp/SignUp';
 import Login from './components/Login/Login';
 import UserContextProvider from './context/UserContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer position="bottom-center" limit={1} />
       <UserContextProvider>
         <BrowserRouter>
           <CartContextProvider>

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../config/firebase';
 import { Spinner } from '../Spinner/Spinner';
 import style from './SignUp.module.css';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
   const [userData, setUserData] = useState({
@@ -65,17 +66,17 @@ const SignUp = () => {
         userId: responseUser.user.uid,
       });
       setLoading(false);
-      alert('Registro exitoso');
+      toast.success('Registro exitoso');
       navigate('/login');
     } catch (error) {
       setLoading(false);
-      console.log(error);
-      alert(error.message);
+
       if (error.code === 'auth/weak-password') {
-        alert('La contraseña debe tener al menos 6 caracteres');
-      }
-      if (error.code === 'auth/email-already-in-use') {
-        alert('Ese email ya se encuentra en uso');
+        toast.error('La contraseña debe tener al menos 6 caracteres');
+      } else if (error.code === 'auth/email-already-in-use') {
+        toast.error('E-mail ya en uso');
+      } else {
+        toast.error(error.message);
       }
     }
   };
@@ -91,11 +92,11 @@ const SignUp = () => {
     if (pass1.value === pass2.value) {
       return true;
     } else if (pass1.value.length < 6) {
-      alert('Debe ingresar una contraseña de más de 6 caracteres');
+      toast.error('Debe ingresar una contraseña de más de 6 caracteres');
       pass1.focus();
       return false;
     } else if (pass1.value !== pass2.value) {
-      alert('Las contraseñas no coinciden');
+      toast.error('Las contraseñas no coinciden');
       pass2.focus();
       return false;
     } else {

@@ -6,6 +6,7 @@ import { auth, db } from '../../config/firebase';
 import { userContext } from '../../context/UserContext';
 import { Spinner } from '../Spinner/Spinner';
 import style from './Login.module.css';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const userContextResult = useContext(userContext);
@@ -42,14 +43,23 @@ const Login = () => {
       //console.log('usuario', querySnapshot.docs[0]?.data());
       userContextResult.loginUser(querySnapshot.docs[0]?.data()); // Context
       //userContextResult.loginUser(responseUser.user.uid);
-      alert('Bienvenido/a');
+      toast.success('Inicio de sesión exitoso');
       navigate('/');
     } catch (error) {
-      console.log(error);
       setLoading(false);
-      alert(error.message);
-      if (error.code === 'auth/weak-password') {
-        alert('La contraseña debe tener al menos 6 caracteres');
+
+      if (error.code === 'auth/wrong-password') {
+        toast.error('Contraseña incorrecta');
+      } else if (error.code === 'auth/user-not-found') {
+        toast.error('Usuario no encontrado. Por favor verifique los datos');
+      } else if (error.code === 'auth/too-many-requests') {
+        toast.error(
+          'El acceso a esta cuenta se ha inhabilitado temporalmente debido a muchos intentos fallidos de inicio de sesión. Puede restaurarlo inmediatamente restableciendo su contraseña o puede volver a intentarlo más tarde'
+        );
+      } else if (error.code === 'auth/invalid-email') {
+        toast.error('E-mail invalido');
+      } else {
+        toast.error(error.message);
       }
     }
   };

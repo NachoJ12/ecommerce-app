@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { toast } from 'react-toastify';
 
 export const userContext = createContext();
 
@@ -21,7 +22,6 @@ const UserContextProvider = (props) => {
     localStorage.removeItem('login');
     setUserInfo();
     localStorage.removeItem('user');
-    alert('Desconexión exitosa. User context, modificar alerta');
   };
 
   return (
