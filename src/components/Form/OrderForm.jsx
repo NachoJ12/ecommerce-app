@@ -2,46 +2,84 @@ import React from 'react';
 import style from './OrderForm.module.css';
 
 const OrderForm = ({ handleChange, userData, handleSubmit, handleBuy }) => {
+  const emailRegex =
+    /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+  const phoneRegex = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s./0-9]{6,11}$/g;
+
   return (
-    <form className={style.orderForm} onSubmit={handleSubmit}>
-      <div>
-        <label>Nombre</label>
-        <br />
-        <input
-          type="text"
-          placeholder="Ingrese su nombre"
-          name="name"
-          onChange={handleChange}
-          value={userData.name}
-          required
-        ></input>
-      </div>
-      <div>
-        <label>Telefono</label>
-        <br />
-        <input
-          type="number"
-          placeholder="Ingrese su telefono"
-          name="phone"
-          onChange={handleChange}
-          value={userData.phone}
-          required
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <br />
-        <input
-          type="email"
-          placeholder="Ingrese su email"
-          name="email"
-          onChange={handleChange}
-          value={userData.email}
-          required
-        ></input>
-      </div>
-      <button className={style.saveBtn}>Guardar</button>
-    </form>
+    <div>
+      <form className={style.orderForm} onSubmit={handleSubmit}>
+        <div>
+          <label>Nombre</label>
+          <input
+            type="text"
+            placeholder="Nombre"
+            name="name"
+            onChange={handleChange}
+            value={userData.name}
+            required
+          ></input>
+        </div>
+        <div>
+          <label>Apellido</label>
+          <input
+            type="text"
+            placeholder="Apellido"
+            name="lastName"
+            onChange={handleChange}
+            value={userData.lastName}
+            required
+          ></input>
+        </div>
+        <div>
+          <label>Teléfono</label>
+          <input
+            type="text"
+            placeholder="Teléfono"
+            name="phone"
+            onChange={handleChange}
+            value={userData.phone}
+            required
+          ></input>
+        </div>
+        <div>
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="E-mail"
+            name="email"
+            onChange={handleChange}
+            value={userData.email}
+            required
+          ></input>
+        </div>
+        <div>
+          <label>Confirmar Email</label>
+          <input
+            type="email"
+            placeholder="Confirmar e-mail"
+            name="confirmEmail"
+            id="confirmEmail"
+            onChange={handleChange}
+            value={userData.confirmEmail}
+            required
+          ></input>
+        </div>
+        {/* Todos los inputs completos correctamente, habilitamos boton para proceder con el pago */}
+        {userData.name &&
+        userData.lastName &&
+        userData.phone &&
+        userData.email === userData.confirmEmail &&
+        phoneRegex.test(userData.phone) &&
+        emailRegex.test(userData.email, userData.confirmEmail) ? (
+          <button className={style.btnToPay}>Proceder al pago</button>
+        ) : (
+          <button className={style.btnToPay} disabled>
+            Proceder al pago
+          </button>
+        )}
+      </form>
+    </div>
   );
 };
 
