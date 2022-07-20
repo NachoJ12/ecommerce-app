@@ -7,6 +7,7 @@ import { cartContext } from '../../context/CartContext';
 import style from './Chekout.module.css';
 import { userContext } from '../../context/UserContext';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export const Checkout = () => {
   const userContextResult = useContext(userContext);
@@ -43,12 +44,12 @@ export const Checkout = () => {
     const confirmEmail = document.getElementById('confirmEmail');
     if (userData.email !== confirmEmail.value) {
       confirmEmail.focus();
-      alert('los mails deben coincidir');
+      toast.error('Los mails deben coincidir');
       return;
     }
     /* Fin funcion anterior */
     if (cartCheckout.length < 1) {
-      alert(
+      toast.error(
         'No hay nada agregado al carrito. Por favor seleccione el producto que desea'
       );
       return;
@@ -72,7 +73,7 @@ export const Checkout = () => {
         resultContext.clear();
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.message);
       });
   };
 
