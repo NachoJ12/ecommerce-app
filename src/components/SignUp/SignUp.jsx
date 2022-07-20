@@ -114,7 +114,7 @@ const SignUp = () => {
           <form onSubmit={handleSubmit}>
             <div className={style.filaArriba}>
               <div className={style.contenedorInput}>
-                <label>
+                <label className={style.label}>
                   Nombre <span className={style.req}>*</span>
                 </label>
                 <input
@@ -130,7 +130,7 @@ const SignUp = () => {
               </div>
 
               <div className={style.contenedorInput}>
-                <label>
+                <label className={style.label}>
                   Apellido <span className={style.req}>*</span>
                 </label>
                 <input
@@ -147,7 +147,7 @@ const SignUp = () => {
             </div>
 
             <div className={style.contenedorInput}>
-              <label>
+              <label className={style.label}>
                 Email <span className={style.req}>*</span>
               </label>
               <input
@@ -163,7 +163,7 @@ const SignUp = () => {
             </div>
 
             <div className={style.contenedorInput}>
-              <label>
+              <label className={style.label}>
                 Contraseña <span className={style.req}>*</span>
               </label>
               <input
@@ -180,7 +180,7 @@ const SignUp = () => {
             </div>
 
             <div className={style.contenedorInput}>
-              <label>
+              <label className={style.label}>
                 Repetir contraseña <span className={style.req}>*</span>
               </label>
               <input
