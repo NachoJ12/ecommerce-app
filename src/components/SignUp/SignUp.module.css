@@ -13,7 +13,7 @@
 }
 
 /* LABELS */
-label {
+.label {
   position: absolute;
   transform: translateY(6px);
   left: 13px;
@@ -63,7 +63,7 @@ label {
 
 /* INPUTS */
 
-input {
+.contenedorInput input {
   font-size: 22px;
   display: block;
   width: 100%;
@@ -81,7 +81,7 @@ input {
   border-radius: 5px;
 }
 
-input:focus {
+.contenedorInput input:focus {
   outline: none;
   border-color: #61dafb;
   border-top: none;
