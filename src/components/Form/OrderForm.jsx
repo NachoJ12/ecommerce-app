@@ -9,8 +9,8 @@ const OrderForm = ({ handleChange, userData, handleSubmit, handleBuy }) => {
   return (
     <div>
       <form className={style.orderForm} onSubmit={handleSubmit}>
-        <div>
-          <label>Nombre</label>
+        <div className={style.contenedorInput}>
+          <label className={style.label}>Nombre</label>
           <input
             type="text"
             placeholder="Nombre"
@@ -20,8 +20,8 @@ const OrderForm = ({ handleChange, userData, handleSubmit, handleBuy }) => {
             required
           ></input>
         </div>
-        <div>
-          <label>Apellido</label>
+        <div className={style.contenedorInput}>
+          <label className={style.label}>Apellido</label>
           <input
             type="text"
             placeholder="Apellido"
@@ -31,8 +31,8 @@ const OrderForm = ({ handleChange, userData, handleSubmit, handleBuy }) => {
             required
           ></input>
         </div>
-        <div>
-          <label>Teléfono</label>
+        <div className={style.contenedorInput}>
+          <label className={style.label}>Teléfono</label>
           <input
             type="text"
             placeholder="Teléfono"
@@ -42,8 +42,8 @@ const OrderForm = ({ handleChange, userData, handleSubmit, handleBuy }) => {
             required
           ></input>
         </div>
-        <div>
-          <label>Email</label>
+        <div className={style.contenedorInput}>
+          <label className={style.label}>E-mail</label>
           <input
             type="email"
             placeholder="E-mail"
@@ -53,8 +53,8 @@ const OrderForm = ({ handleChange, userData, handleSubmit, handleBuy }) => {
             required
           ></input>
         </div>
-        <div>
-          <label>Confirmar Email</label>
+        <div className={style.contenedorInput}>
+          <label className={style.label}>Confirmar e-mail</label>
           <input
             type="email"
             placeholder="Confirmar e-mail"
@@ -72,10 +72,10 @@ const OrderForm = ({ handleChange, userData, handleSubmit, handleBuy }) => {
         userData.email === userData.confirmEmail &&
         phoneRegex.test(userData.phone) &&
         emailRegex.test(userData.email, userData.confirmEmail) ? (
-          <button className={style.btnToPay}>Proceder al pago</button>
+          <button className={style.btnToPay}>Realizar compra</button>
         ) : (
           <button className={style.btnToPay} disabled>
-            Proceder al pago
+            Realizar compra
           </button>
         )}
       </form>

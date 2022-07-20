@@ -5,31 +5,30 @@
   text-align: start; */
 }
 
+.btnToPay:disabled {
+  background-color: #7e7e7e;
+  color: white;
+  border: none;
+}
+
 .btnToPay {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #389bb6;
+  background-color: dodgerblue;
+  color: #ffffff;
+  transition: color ease 1000ms;
+  transition: background-color ease 1000ms;
+  padding: 0.5rem 1rem;
   border-radius: 5px;
-  margin-top: 1rem;
-  transition: color ease 500ms;
-  transition: background-color ease 500ms;
 }
 
 .btnToPay:hover {
-  background-color: dodgerblue;
-  color: #ffffff;
+  background-color: rgb(24, 104, 184);
   transition: color ease 1000ms;
   transition: background-color ease 1000ms;
 }
 
 .btnToPay:active {
   box-shadow: 0 0.1rem 0.8rem rgb(67, 118, 167);
-}
-
-.btnToPay:disabled {
-  background-color: #7e7e7e;
-  color: white;
-  border: none;
 }
 
 .orderForm input {
@@ -40,9 +39,28 @@
   border-radius: 5px;
   color: black; /* momentaneo - corregir input de signup*/
   font-size: 1rem;
+  width: 100%;
 }
 
 .orderForm input:focus {
   outline: none;
   border: 2px solid #61dafb;
+}
+
+.contenedorInput {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.label {
+  position: absolute;
+  /* transform: translateY(46px); */
+  transform: translateY(-1rem);
+  /* left: 13px; */
+  color: rgba(177, 14, 14, 0.5);
+  transition: all 0.25s ease;
+  /*backface-visibility: hidden;*/
+  pointer-events: none;
+  font-size: 14px;
+  display: none;
 }

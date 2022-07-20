@@ -36,6 +36,14 @@ export const Checkout = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
+
+    const target = e.target;
+    const label = target.parentElement.children[0];
+    if (value === '') {
+      label.classList.remove(`${style.activateLabel}`);
+    } else if (value !== '') {
+      label.classList.add(`${style.activateLabel}`);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -71,6 +79,7 @@ export const Checkout = () => {
       .then((response) => {
         setOrderId(response.id);
         resultContext.clear();
+        toast.success('Compra exitosa');
       })
       .catch((error) => {
         toast.error(error.message);
@@ -81,51 +90,47 @@ export const Checkout = () => {
     <>
       {orderId !== '' ? (
         <h1>Gracias por tu compra, tu número de envío es: {orderId}</h1>
-      ) : userLoggedIn ? (
-        <div>Comprar como xxx@gmail.com</div>
       ) : (
-        <div
-          className={`${style.containerCheckout}`}
-          style={{ textAlign: 'initial' }}
-        >
-          <h2 style={{ marginBottom: '1.5rem' }}>Checkout</h2>
+        //: userLoggedIn ? (
+        //<div>esto se borra</div>
+        //)
+        <div className={style.containerCheckout}>
+          <h1 className={style.titleCheckout}>Checkout</h1>
           <div className={style.grid2}>
             <div>
-              <h2 style={{ fontSize: '1rem', marginBottom: '1rem' }}>
-                Resumen de compra
-              </h2>
-              <div
-                style={{
-                  border: '1px solid rgb(229 231 235)',
-                  borderRadius: '5px',
-                  padding: '0.8rem',
-                }}
-              >
+              <h2 className={style.subtitleCheckout}>Resumen de compra</h2>
+              <div className={style.summaryBox}>
                 <p>Items: {resultContext.totalQuantity}</p>
                 <p>Envio: ¡Gratis!</p>
                 <p>Total: ${resultContext.totalPrice}</p>
               </div>
-              <Link
-                to="/cart"
-                style={{
-                  fontSize: '1rem',
-                  display: 'flex',
-                  color: 'grey',
-                }}
-              >
+              <Link to="/cart" className={style.backToCart}>
                 <span className="material-symbols-outlined">arrow_back</span>
                 Volver al carrito
               </Link>
             </div>
             <div>
-              <h2 style={{ fontSize: '1rem', marginBottom: '1rem' }}>
+              <h2 className={style.subtitleCheckout}>
                 Detalles de facturación
               </h2>
-              <OrderForm
-                handleChange={handleChange}
-                userData={userData}
-                handleSubmit={handleSubmit}
-              />
+              {userLoggedIn ? (
+                <div>
+                  {/* <p>
+                    Comprar como{' '}
+                    <input
+                      readOnly
+                      value={userContextResult.userInfo.email}
+                      disabled
+                    ></input>
+                  </p> */}
+                </div>
+              ) : (
+                <OrderForm
+                  handleChange={handleChange}
+                  userData={userData}
+                  handleSubmit={handleSubmit}
+                />
+              )}
             </div>
           </div>
         </div>
