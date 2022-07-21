@@ -1,10 +1,3 @@
-.orderForm {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: start; */
-}
-
 .btnToPay:disabled {
   background-color: #7e7e7e;
   color: white;
@@ -32,12 +25,10 @@
 }
 
 .orderForm input {
-  /* padding: 0.2rem 0.5rem; */
   padding: 0.5rem;
   margin: 0.3rem 0 0.5rem 0;
   border: 1px solid lightgrey;
   border-radius: 5px;
-  color: black; /* momentaneo - corregir input de signup*/
   font-size: 1rem;
   width: 100%;
 }
@@ -58,12 +49,9 @@
 
 .label {
   position: absolute;
-  /* transform: translateY(46px); */
   transform: translateY(-1rem);
-  /* left: 13px; */
   color: rgba(177, 14, 14, 0.5);
   transition: all 0.25s ease;
-  /*backface-visibility: hidden;*/
   pointer-events: none;
   font-size: 14px;
   display: none;

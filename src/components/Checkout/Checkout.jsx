@@ -89,7 +89,18 @@ export const Checkout = () => {
   return (
     <>
       {orderId !== '' ? (
-        <h1>Gracias por tu compra, tu número de envío es: {orderId}</h1>
+        <div className={style.finishedOrder}>
+          <h1>¡Muchas Gracias por tu compra!</h1>
+          <p>
+            Te enviamos un email a <em>{userData.email}</em> con el detalle de
+            tu orden de compra. Tu número de orden es:{' '}
+            <strong>{orderId}</strong>.
+            <br />
+            Esperamos que tu experiencia dentro de Electro App haya sido de lo
+            mejor.
+          </p>
+          <p>¡Hasta la próxima!</p>
+        </div>
       ) : (
         <div className={style.containerCheckout}>
           <h1 className={style.titleCheckout}>Checkout</h1>

@@ -88,8 +88,6 @@ const OrderForm = ({
             </div>
           </div>
         )}
-
-        {/* Todos los inputs completos correctamente, habilitamos boton para proceder con el pago */}
         {userData.name &&
         userData.lastName &&
         userData.phone &&
