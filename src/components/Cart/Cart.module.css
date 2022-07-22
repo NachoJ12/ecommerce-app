@@ -40,6 +40,7 @@
 .column {
   display: grid;
   grid-template-columns: 2fr max(30%);
+  margin: 0 3rem;
 }
 
 .btnInCart {

@@ -7,7 +7,6 @@ import style from './ItemDetail.module.css';
 const ItemDetail = ({ id, title, description, pictureUrl, price, stock }) => {
   const [amount, setAmount] = useState(0);
   const resultContext = useContext(cartContext);
-  //console.log('ContextItemDetail', resultContext);
 
   const onAdd = (selectedQuantity) => {
     setAmount(selectedQuantity);

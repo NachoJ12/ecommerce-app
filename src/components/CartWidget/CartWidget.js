@@ -5,7 +5,6 @@ import style from './CartWidget.module.css';
 
 const CartWidget = () => {
   const resultContext = useContext(cartContext);
-  console.log('ContextEnCartWidget', resultContext);
 
   return resultContext.totalQuantity < 1 ? (
     <></>

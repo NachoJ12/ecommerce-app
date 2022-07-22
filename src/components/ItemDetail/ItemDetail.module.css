@@ -65,4 +65,5 @@ button[disabled] {
   padding: 2rem 0rem;
   background-color: rgb(156 156 156 / 31%);
   border-radius: 5px;
+  margin: 0 1rem;
 }

@@ -1,13 +1,7 @@
 import React from 'react';
 import style from './OrderForm.module.css';
 
-const OrderForm = ({
-  handleChange,
-  userData,
-  handleSubmit,
-  logged,
-  handleBuy,
-}) => {
+const OrderForm = ({ handleChange, userData, handleSubmit, logged }) => {
   const emailRegex =
     /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
   const phoneRegex = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s./0-9]{6,11}$/g;

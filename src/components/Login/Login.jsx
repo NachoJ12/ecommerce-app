@@ -23,7 +23,6 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log('handleSubmit', user);
     setLoading(true);
     e.preventDefault();
     try {
@@ -32,17 +31,14 @@ const Login = () => {
         user.login_email,
         user.login_password
       );
-      console.log(responseUser);
+
       setLoading(false);
-      console.log('uid', responseUser.user.uid);
       const q = query(
         collection(db, 'usuarios'),
         where('userId', '==', responseUser.user.uid)
       );
       const querySnapshot = await getDocs(q);
-      //console.log('usuario', querySnapshot.docs[0]?.data());
-      userContextResult.loginUser(querySnapshot.docs[0]?.data()); // Context
-      //userContextResult.loginUser(responseUser.user.uid);
+      userContextResult.loginUser(querySnapshot.docs[0]?.data());
       toast.success('Inicio de sesión exitoso');
       navigate('/');
     } catch (error) {

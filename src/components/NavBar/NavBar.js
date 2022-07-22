@@ -7,14 +7,12 @@ import { userContext } from '../../context/UserContext';
 
 const NavBar = () => {
   const userContextResult = useContext(userContext);
-  //console.log('userCntxResult', userContextResult);
+
   const logueado = userContextResult.userLogin;
-  //console.log('logueado', logueado);
 
   const dropdownUserMouseOver = () => {
     const dropdownContainer = document.getElementById('dropdownContainer');
     const occultDropdown = document.getElementById('extendOccultDropdown');
-    //console.log(dropdownContainer);
 
     dropdownContainer.classList.add(`${style.gridActive}`);
     occultDropdown.classList.add(`${style.gridActive}`);

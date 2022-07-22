@@ -13,7 +13,6 @@ import { useEffect } from 'react';
 export const Checkout = () => {
   const userContextResult = useContext(userContext);
   const resultContext = useContext(cartContext);
-  console.log('userContextResult', userContextResult);
   const userLoggedIn = userContextResult.userLogin;
 
   const [userData, setUserData] = useState({

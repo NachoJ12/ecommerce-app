@@ -13,7 +13,6 @@ const ItemDetailContainer = () => {
   useEffect(() => {
     getDoc(doc(collection(db, 'products'), id))
       .then((res) => {
-        console.log(res.data(), res.id);
         setItem({
           id: res.id,
           ...res.data(),
