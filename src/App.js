@@ -16,8 +16,10 @@ import Footer from './components/Footer/Footer';
 function App() {
   return (
     <div className="App">
-      <ToastContainer position="bottom-center" limit={1} />
-
+      <ToastContainer
+        style={{ position: 'absolute', left: '10px', top: '90px' }}
+        limit={1}
+      />
       <BrowserRouter>
         <UserContextProvider>
           <CartContextProvider>

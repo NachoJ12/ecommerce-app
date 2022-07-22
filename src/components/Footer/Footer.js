@@ -1,12 +1,15 @@
 import React from 'react';
 import style from './Footer.module.css';
 import logo from '../../logo.svg';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
     <footer className={style.footer}>
       <div className={style.social}>
-        <img src={logo} alt="Logo" />
+        <Link to="/">
+          <img src={logo} alt="Logo" />
+        </Link>
 
         <p className={style.copyright}>© Copyright 2022. All Rights Reserved</p>
         <div className={style.icons}>
