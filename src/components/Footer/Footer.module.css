@@ -1,0 +1,37 @@
+.footer {
+  background: #1e1e26;
+  color: #ffffff;
+
+  padding: 1rem;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.copyright {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.icons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icons a {
+  margin: 0 0.3rem;
+}
+
+.icons a i {
+  color: white;
+  font-size: 1.25rem;
+  transition: color 0.8s;
+}
+
+.icons a i:hover {
+  color: #61dafb;
+}

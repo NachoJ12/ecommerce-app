@@ -11,13 +11,15 @@ import Login from './components/Login/Login';
 import UserContextProvider from './context/UserContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
     <div className="App">
       <ToastContainer position="bottom-center" limit={1} />
-      <UserContextProvider>
-        <BrowserRouter>
+
+      <BrowserRouter>
+        <UserContextProvider>
           <CartContextProvider>
             <NavBar />
             <Routes>
@@ -36,8 +38,9 @@ function App() {
               <Route path="/login" element={<Login />} />
             </Routes>
           </CartContextProvider>
-        </BrowserRouter>
-      </UserContextProvider>
+        </UserContextProvider>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
