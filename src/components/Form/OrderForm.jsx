@@ -34,7 +34,7 @@ const OrderForm = ({ handleChange, userData, handleSubmit, logged }) => {
           <label className={style.label}>Teléfono</label>
           <input
             type="text"
-            placeholder="Teléfono"
+            placeholder="Teléfono (insertar mínimo 7 dígitos)"
             name="phone"
             onChange={handleChange}
             value={userData.phone}

@@ -32,13 +32,13 @@ const Login = () => {
         user.login_password
       );
 
-      setLoading(false);
       const q = query(
         collection(db, 'usuarios'),
         where('userId', '==', responseUser.user.uid)
       );
       const querySnapshot = await getDocs(q);
       userContextResult.loginUser(querySnapshot.docs[0]?.data());
+      setLoading(false);
       toast.success('Inicio de sesión exitoso');
       navigate('/');
     } catch (error) {

@@ -59,6 +59,12 @@ const NavBar = () => {
               <small className={style.smallTextName}>
                 {`${userContextResult.userInfo.name}`}
               </small>
+              <span
+                className="material-symbols-outlined"
+                style={{ fontSize: '1rem' }}
+              >
+                expand_more
+              </span>
               {/* aca arranca */}
               <div
                 className={style.extendOccultDropdown}
@@ -70,12 +76,12 @@ const NavBar = () => {
                     id="dropdownContainer"
                   >
                     <div className={style.categories}>
-                      <Link to="#profile" className={style.categoriesLink}>
+                      {/* <Link to="#profile" className={style.categoriesLink}>
                         Profile
                         <span className="material-symbols-outlined">
                           chevron_right
                         </span>
-                      </Link>
+                      </Link> */}
 
                       <Link
                         onClick={userContextResult.logoutUser}
