@@ -10,10 +10,7 @@ const ItemDetail = ({ id, title, description, pictureUrl, price, stock }) => {
 
   const onAdd = (selectedQuantity) => {
     setAmount(selectedQuantity);
-  };
-
-  const agregarAlCarrito = () => {
-    resultContext.addItem({ id, title, price, pictureUrl }, amount);
+    resultContext.addItem({ id, title, price, pictureUrl }, selectedQuantity);
   };
 
   return (
@@ -36,11 +33,8 @@ const ItemDetail = ({ id, title, description, pictureUrl, price, stock }) => {
             ) : (
               <div>
                 <Link to="/cart">
-                  <button
-                    onClick={agregarAlCarrito}
-                    className={style.finishPurchase}
-                  >
-                    Terminar mi compra
+                  <button className={style.finishPurchase}>
+                    Continuar al carrito
                   </button>
                 </Link>
               </div>

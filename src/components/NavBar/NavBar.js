@@ -76,13 +76,6 @@ const NavBar = () => {
                     id="dropdownContainer"
                   >
                     <div className={style.categories}>
-                      {/* <Link to="#profile" className={style.categoriesLink}>
-                        Profile
-                        <span className="material-symbols-outlined">
-                          chevron_right
-                        </span>
-                      </Link> */}
-
                       <Link
                         onClick={userContextResult.logoutUser}
                         to="/"

@@ -49,7 +49,6 @@ const SignUp = () => {
     e.preventDefault();
 
     if (validatePassword() !== true) {
-      setLoading(false);
       return;
     }
     try {
@@ -70,7 +69,6 @@ const SignUp = () => {
       navigate('/login');
     } catch (error) {
       setLoading(false);
-
       if (error.code === 'auth/weak-password') {
         toast.error('La contraseña debe tener al menos 6 caracteres');
       } else if (error.code === 'auth/email-already-in-use') {
@@ -104,11 +102,11 @@ const SignUp = () => {
     }
   };
 
-  if (loading) {
-    return <Spinner />;
-  } else {
-    return (
-      <div>
+  return (
+    <div>
+      {loading ? (
+        <Spinner />
+      ) : (
         <div className={style.contenedorFormulario}>
           <h1 className={style.titleOutsideForm}>Registrarse</h1>
           <form onSubmit={handleSubmit}>
@@ -200,9 +198,9 @@ const SignUp = () => {
             </button>
           </form>
         </div>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 };
 
 export default SignUp;
