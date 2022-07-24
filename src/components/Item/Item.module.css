@@ -5,6 +5,8 @@
   min-width: 300px;
   max-width: 410px;
   margin: 10px;
+  display: grid;
+  grid-template-rows: 1fr;
 }
 
 .card:hover {
@@ -13,6 +15,10 @@
 
 .container {
   padding: 0rem 1rem 1rem;
+}
+
+.titleCard {
+  margin: 0.2rem 1rem;
 }
 
 button.seeDetail {

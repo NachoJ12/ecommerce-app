@@ -24,11 +24,10 @@ const ItemListContainer = (props) => {
         const productsMap = res.docs.map((doc) => {
           const aux = doc.data();
           aux.id = doc.id;
-
           return aux;
         });
-        setLoading(false);
         setItems(productsMap);
+        setLoading(false);
       })
       .catch((error) => {
         toast.error(error.message);
@@ -37,7 +36,7 @@ const ItemListContainer = (props) => {
 
   return (
     <div className={style.container}>
-      <h3>{props.greeting}</h3>
+      <h1 className={style.titleGreeting}>{props.greeting}</h1>
       {loading ? (
         <Spinner />
       ) : items.length <= 0 ? (

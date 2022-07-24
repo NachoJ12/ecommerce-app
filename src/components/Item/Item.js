@@ -5,7 +5,7 @@ import style from './Item.module.css';
 const Item = ({ id, title, description, pictureUrl, price, stock }) => {
   return (
     <div className={style.card} key={id}>
-      <h2>{title}</h2>
+      <h2 className={style.titleCard}>{title}</h2>
       <div className={style.container}>
         <img src={pictureUrl} alt={title} className={style.imgItem} />
         <p>{description}</p>

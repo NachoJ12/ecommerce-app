@@ -17,8 +17,10 @@ function App() {
   return (
     <div className="App">
       <ToastContainer
-        style={{ position: 'absolute', left: '10px', top: '90px' }}
+        position="top-right"
+        style={{ top: '5.2rem' }}
         limit={1}
+        autoClose={3000}
       />
       <BrowserRouter>
         <UserContextProvider>
@@ -27,7 +29,7 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={<ItemListContainer greeting={'Bienvenido!'} />}
+                element={<ItemListContainer greeting={'¡Bienvenido!'} />}
               />
               <Route path="/item/:id" element={<ItemDetailContainer />} />
               <Route

@@ -39,7 +39,6 @@ const Login = () => {
       const querySnapshot = await getDocs(q);
       userContextResult.loginUser(querySnapshot.docs[0]?.data());
       setLoading(false);
-      toast.success('Inicio de sesión exitoso');
       navigate('/');
     } catch (error) {
       setLoading(false);
@@ -57,6 +56,7 @@ const Login = () => {
       } else {
         toast.error(error.message);
       }
+      setUser({ login_email: '', login_password: '' });
     }
   };
 
@@ -88,11 +88,11 @@ const Login = () => {
     }
   };
 
-  if (loading) {
-    return <Spinner />;
-  } else {
-    return (
-      <div>
+  return (
+    <div>
+      {loading ? (
+        <Spinner />
+      ) : (
         <div className={style.contenedorFormulario}>
           <h1 className={style.titleOutsideForm}>Login</h1>
           <form onSubmit={handleSubmit}>
@@ -127,12 +127,6 @@ const Login = () => {
               />
             </div>
 
-            {/* <div>
-            <Link to="#faltaHacerElEnvioDesdeFirebase">
-              ¿Has olvidado la contraseña?
-            </Link>
-          </div> */}
-
             <button className={`${style.button}`}>Ingresar</button>
 
             <div>
@@ -140,9 +134,9 @@ const Login = () => {
             </div>
           </form>
         </div>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 };
 
 export default Login;

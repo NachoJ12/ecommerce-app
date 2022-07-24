@@ -9,6 +9,7 @@ import { userContext } from '../../context/UserContext';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
+import { Spinner } from '../Spinner/Spinner';
 
 export const Checkout = () => {
   const userContextResult = useContext(userContext);
@@ -23,6 +24,7 @@ export const Checkout = () => {
     confirmEmail: '',
   });
   const [orderId, setOrderId] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (userLoggedIn) {
@@ -61,6 +63,7 @@ export const Checkout = () => {
       );
       return;
     }
+    setLoading(true);
     const orderData = {
       buyer: {
         name: userData.name,
@@ -78,16 +81,20 @@ export const Checkout = () => {
       .then((response) => {
         setOrderId(response.id);
         resultContext.clear();
+        setLoading(false);
         toast.success('Compra exitosa');
       })
       .catch((error) => {
+        setLoading(false);
         toast.error(error.message);
       });
   };
 
   return (
     <>
-      {orderId !== '' ? (
+      {loading ? (
+        <Spinner style={{ alignSelf: 'center' }} />
+      ) : orderId !== '' ? (
         <div className={style.finishedOrder}>
           <h1>¡Muchas Gracias por tu compra!</h1>
           <p>
@@ -98,7 +105,10 @@ export const Checkout = () => {
             Esperamos que tu experiencia dentro de Electro App haya sido de lo
             mejor.
           </p>
-          <p>¡Hasta la próxima!</p>
+
+          <Link to="/" className={style.btnInCheckout}>
+            Ir al home
+          </Link>
         </div>
       ) : (
         <div className={style.containerCheckout}>

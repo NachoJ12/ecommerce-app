@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import style from './ItemCount.module.css';
 
 const ItemCount = ({ stock, initial, onAdd }) => {
@@ -18,8 +19,12 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
   const confirmCount = () => {
     onAdd(count);
+    if (count === 1) {
+      toast.success(`Se ha agregado ${count} producto a su carrito`);
+    } else {
+      toast.success(`Se han agregado ${count} productos a su carrito`);
+    }
   };
-
   return (
     <div className={style.itemCountContainer}>
       <div className={style.itemTrigger}>
