@@ -65,7 +65,6 @@ const NavBar = () => {
               >
                 expand_more
               </span>
-              {/* aca arranca */}
               <div
                 className={style.extendOccultDropdown}
                 id="extendOccultDropdown"
@@ -90,7 +89,6 @@ const NavBar = () => {
                   </div>
                 </div>
               </div>
-              {/* aca termina */}
             </div>
           </div>
         ) : (
@@ -98,9 +96,6 @@ const NavBar = () => {
             <span className={`material-symbols-outlined ${style.userIcon}`}>
               <Link to="/login">person</Link>
             </span>
-
-            {/* <Link to="/signup">Registro</Link>
-            <Link to="/login">Ingresar</Link> */}
           </div>
         )}
         <CartWidget />

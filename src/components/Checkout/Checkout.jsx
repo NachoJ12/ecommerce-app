@@ -91,9 +91,9 @@ export const Checkout = () => {
   };
 
   return (
-    <>
+    <div style={{ margin: 'auto 0' }}>
       {loading ? (
-        <Spinner style={{ alignSelf: 'center' }} />
+        <Spinner />
       ) : orderId !== '' ? (
         <div className={style.finishedOrder}>
           <h1>¡Muchas Gracias por tu compra!</h1>
@@ -140,6 +140,6 @@ export const Checkout = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
